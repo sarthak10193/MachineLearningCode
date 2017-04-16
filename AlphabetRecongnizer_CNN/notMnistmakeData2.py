@@ -4,7 +4,7 @@ import numpy as np
 from scipy import ndimage
 from six.moves import cPickle as pickle
 
-from CNN import extractNotMNIST1 as exnmnist
+import extractNotMNIST1 as exnmnist
 
 '''
 Next important task is to convert the data set into 3D numpy array storing the :

@@ -101,8 +101,9 @@ with mygraph.as_default():
 
     """
         The 3rd layer again has 16 filters/ set of weights , each filter being 5*5*16
-        the output of 3rd layer is a 7*7 image with again 16 depth/feature maps, but then we take max pool of this output to be fed into FC layer
-        Maxpool2X2 of 7*7 gives a 4*4 image with same padding with the same depth of course
+        the output of 3rd layer is a 7*7 image with again 16 depth/feature maps, but then we take max pool of this
+        output to be fed into FC layer
+        Max-pool2X2 of 7*7 gives a 4*4 image with same padding with the same depth of course
     """
     with tf.name_scope(name="layer23"):
 

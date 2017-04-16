@@ -1,7 +1,7 @@
 import numpy as np
 from six.moves import cPickle as pickle
 
-from CNN import notMnistmakeData2 as mnistMD
+import notMnistmakeData2 as mnistMD
 
 TRAIN_SIZE = 350000 # so we'll basically pick 35000 random samples from each of the 10 pickles  , not each pickle has 45000
 

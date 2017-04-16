@@ -22,13 +22,13 @@ TEST_SIZE = 18000      # 18000
 def reformat(dataset, labels, setsize):
 
     dataset = np.reshape(dataset,(-1,IMAGE_SIZE, IMAGE_SIZE, NUM_OF_CHANNELS)).astype(np.float32)
-    labels = (np.arange(NUM_OF_CLASSES) == labels[:,None]).astype(np.float32) # one hot encoding
+    labels = (np.arange(NUM_OF_CLASSES) == labels[:,None]).astype(np.float32) # one hot encoding vector rep [0,1,0]
 
     return dataset[:setsize, ], labels[:setsize,]
 
 try:
     print(" ### Getting Data from pickle ### \n\n")
-    with open("/home/sarthak/PycharmProjects/udacity-deep learning/notMNIST.pickle", 'rb') as f:
+    with open("/home/sarthak/PycharmProjects/udacityML/MachineLearningCode/AlphabetRecongnizer_CNN/notMNIST.pickle", 'rb') as f:
         data_map = pickle.load(f)
 
         train_dataset = data_map['train_dataset']
@@ -97,7 +97,14 @@ with mygraph.as_default():
     '''
     From CN1 to CN2 :
     redo above step , from cn1 to cn2
-    THis time your input is cn1 with depth/no of channels = 64 mapped to cn2. For cn2 we again select 64 feature maps
+    THis time your input is cn1 with depth/no of channels = 16 mapped to cn2. For cn2 we again select 16 feature maps
+    take feature map 1 of cn1 apply filter 1, 2, ,3, ...... 16
+    take feature map 2 of cn1 apply filter 1, 2, 3, ....... 16
+    .
+    .
+    .
+    take feature map 16 of cn1 apply filter 1, 2, 3, ....... 16
+    Therefore patch_size, patch_size * current feature maps * no of filters
 
     '''
     weights_23 = tf.Variable(tf.truncated_normal(shape=[PATCH_SIZE, PATCH_SIZE, DEPTH, DEPTH], stddev=0.1))
@@ -128,6 +135,8 @@ with mygraph.as_default():
         conv1 = tf.nn.conv2d(input=data, filter= weights_12, strides=[1,2,2,1], padding="SAME")
         hidden1 = tf.nn.relu(conv1 + biases_12)
         '''
+        output_1 = (28.00 - 5.00 - (-2.00)) / 2.00 + 1.00 = floor(13.5) +1 = 14
+        O= (W−K−2P)/S+1
         so using same padding and stride = 2 we get h = 14 , w = 14 , depth = 16   [batch size = 100]
         so basically second layer has 16 levels of  14*14=296  stacked on top of each other
         '''
